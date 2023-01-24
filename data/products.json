@@ -1,0 +1,16 @@
+[
+  {
+    "id": "123245",
+    "title": "A Book",
+    "imageUrl": "https://tse2.mm.bing.net/th?id=OIP.KbEyrvoRTqpdJO-IYtL5fQHaEB&pid=Api&P=0",
+    "description": "This is an awesome book!",
+    "price": "19"
+  },
+  {
+    "id": "0.41607315815753076",
+    "title": "fasfd",
+    "imageUrl": "https://tse2.mm.bing.net/th?id=OIP.KbEyrvoRTqpdJO-IYtL5fQHaEB&pid=Api&P=0",
+    "description": "fadsfads",
+    "price": "12"
+  }
+]

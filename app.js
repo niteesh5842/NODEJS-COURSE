@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 const errorController = require("./controllers/error");
 
-const db = require("./db");
+const db = require("./util/db");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
@@ -25,13 +25,13 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-// db.execute("select * from products")
-//   .then((result) => {
-//     console.log(result[0]);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+db.execute("select * from products")
+  .then((result) => {
+    console.log(result[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.listen(8000, () => {
   console.log("from server");
