@@ -25,14 +25,6 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-db.execute("select * from products")
-  .then((result) => {
-    console.log(result[0]);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 app.listen(8000, () => {
   console.log("from server");
 });
