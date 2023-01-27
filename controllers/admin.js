@@ -13,11 +13,29 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  const product = new Product(null, title, imageUrl, description, price);
-  product
-    .save()
-    .then(() => {
-      res.redirect("/");
+
+  //...with regular database connection
+  // const product = new Product(null, title, imageUrl, description, price);
+  // product
+  //   .save()
+  //   .then(() => {
+  //     res.redirect("/");
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+  //......With Sequelize database connection
+  //..create() immediately adds the product but build() we have to save it manually
+  Product.create({
+    title: title,
+    price: price,
+    imageUrl: imageUrl,
+    description: description,
+  })
+    .then((result) => {
+      console.log(result);
+      // console.log("product created");
     })
     .catch((err) => {
       console.log(err);

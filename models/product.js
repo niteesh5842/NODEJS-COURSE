@@ -1,30 +1,62 @@
-const Cart = require("./cart");
+//For regular database connection
 
-const db = require("../util/db");
+// const Cart = require("./cart");
 
-module.exports = class Product {
-  constructor(id, title, imageUrl, description, price) {
-    this.id = id;
-    this.title = title;
-    this.imageUrl = imageUrl;
-    this.description = description;
-    this.price = price;
-  }
+// const db = require("../util/db");
 
-  save() {
-    return db.execute(
-      "INSERT INTO products (title,price,imageUrl,description) VALUES (?,?,?,?)",
-      [this.title, this.price, this.imageUrl, this.description]
-    );
-  }
+// module.exports = class Product {
+//   constructor(id, title, imageUrl, description, price) {
+//     this.id = id;
+//     this.title = title;
+//     this.imageUrl = imageUrl;
+//     this.description = description;
+//     this.price = price;
+//   }
 
-  static deleteById(id) {}
+//   save() {
+//     return db.execute(
+//       "INSERT INTO products (title,price,imageUrl,description) VALUES (?,?,?,?)",
+//       [this.title, this.price, this.imageUrl, this.description]
+//     );
+//   }
 
-  static fetchAll() {
-    return db.execute("select * from products");
-  }
+//   static deleteById(id) {}
 
-  static findById(id) {
-    return db.execute("SELECT * FROM products WHERE products.id=? ", [id]);
-  }
-};
+//   static fetchAll() {
+//     return db.execute("select * from products");
+//   }
+
+//   static findById(id) {
+//     return db.execute("SELECT * FROM products WHERE products.id=? ", [id]);
+//   }
+// };
+
+//........With sequelize connection
+
+const Sequelize = require("sequelize");
+
+const sequelize = require("../util/database");
+
+const Product = sequelize.define("product", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
+  title: Sequelize.STRING,
+  price: {
+    type: Sequelize.DOUBLE,
+    allowNull: false,
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  description: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
+
+module.exports = Product;
